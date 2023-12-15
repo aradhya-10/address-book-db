@@ -181,3 +181,56 @@ mysql> SELECT *
 | Naman      | Mishra    | Infocity | Gandhinagar | Gujarat | 382010 | +91 6394972199 | naman.mishra1012@gmail.com   |
 +------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
 2 rows in set (0.00 sec)
+
+
+-- UC9: identify each Address Book with name and Type.
+mysql> ALTER TABLE AddressBook
+    -> ADD COLUMN name VARCHAR(50),
+    -> ADD COLUMN type VARCHAR(50);
+Query OK, 5 rows affected (0.08 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM AddressBook;
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+------+------+
+| first_name | last_name | address  | city        | state   | zip    | phone_number   | email                        | name | type |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+------+------+
+| Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com | NULL | NULL |
+| Garima     | Mangal    | Bada     | Gwalior     | MP      | 474009 | +91 6394772288 | mangal.garima@gmail.com      | NULL | NULL |
+| Naman      | Mishra    | Infocity | Gandhinagar | Gujarat | 382010 | +91 6394972199 | naman.mishra1012@gmail.com   | NULL | NULL |
+| Riya       | Mishra    | Noida    | Gaziabad    | UP      | 382420 | +91 6394972187 | riya.mishra7800@gmail.com    | NULL | NULL |
+| Sanjana    | Pathak    | Shahpur  | Gorakhpur   | UP      | 273014 | +91 6394972288 | sanjana.pathak@gmail.com     | NULL | NULL |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+------+------+
+5 rows in set (0.00 sec)
+
+
+mysql> UPDATE AddressBook SET type='Family' WHERE state='Gujarat';
+Query OK, 2 rows affected (0.02 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> UPDATE AddressBook SET name='AddBook1' WHERE state='Gujarat';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> UPDATE AddressBook SET type='Friends' WHERE NOT state='Gujarat';
+Query OK, 3 rows affected (0.02 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> UPDATE AddressBook SET name='AddBook1' WHERE NOT state='UP';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 3  Changed: 1  Warnings: 0
+
+mysql> UPDATE AddressBook SET name='AddBook2' WHERE state='UP';
+Query OK, 2 rows affected (0.02 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM AddressBook;
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+----------+---------+
+| first_name | last_name | address  | city        | state   | zip    | phone_number   | email                        | name     | type    |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+----------+---------+
+| Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com | AddBook1 | Family  |
+| Garima     | Mangal    | Bada     | Gwalior     | MP      | 474009 | +91 6394772288 | mangal.garima@gmail.com      | AddBook1 | Friends |
+| Naman      | Mishra    | Infocity | Gandhinagar | Gujarat | 382010 | +91 6394972199 | naman.mishra1012@gmail.com   | AddBook1 | Family  |
+| Riya       | Mishra    | Noida    | Gaziabad    | UP      | 382420 | +91 6394972187 | riya.mishra7800@gmail.com    | AddBook2 | Friends |
+| Sanjana    | Pathak    | Shahpur  | Gorakhpur   | UP      | 273014 | +91 6394972288 | sanjana.pathak@gmail.com     | AddBook2 | Friends |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+----------+---------+
+5 rows in set (0.00 sec)
