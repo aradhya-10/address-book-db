@@ -167,3 +167,17 @@ mysql> SELECT city, state, COUNT(*) AS size FROM AddressBook GROUP BY city, stat
 | Gwalior     | MP      |    1 |
 +-------------+---------+------+
 4 rows in set (0.00 sec)
+
+
+-- UC8: Ability to retrieve entries sorted alphabetically by Person’s name for a given city
+mysql> SELECT *
+    -> FROM AddressBook
+    -> WHERE city = 'Gandhinagar'
+    -> ORDER BY first_name, last_name;
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| first_name | last_name | address  | city        | state   | zip    | phone_number   | email                        |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
+| Naman      | Mishra    | Infocity | Gandhinagar | Gujarat | 382010 | +91 6394972199 | naman.mishra1012@gmail.com   |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+2 rows in set (0.00 sec)
