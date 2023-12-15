@@ -61,3 +61,29 @@ mysql> SELECT * FROM AddressBook;
 | Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
 +------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
 1 row in set (0.00 sec)
+
+
+mysql> INSERT INTO AddressBook (first_name, last_name, address, city, state, zip, phone_number, email) VALUES ('Aradhyaa', 'Mishraa', 'Infocity', 'Gandhinagar', 'Gujarat', '382010', '+91 6394972188', 'aradhya.mishra1012@gmail.com');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM AddressBook;
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| first_name | last_name | address  | city        | state   | zip    | phone_number   | email                        |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
+| Aradhyaa   | Mishraa   | Infocity | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+2 rows in set (0.00 sec)
+
+-- UC5: Delete Contact
+mysql> DELETE FROM AddressBook
+    -> WHERE first_name = 'Aradhyaa' AND last_name = 'Mishraa';
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM AddressBook;
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| first_name | last_name | address  | city        | state   | zip    | phone_number   | email                        |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+1 row in set (0.00 sec)
