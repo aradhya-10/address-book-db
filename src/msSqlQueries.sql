@@ -47,3 +47,17 @@ mysql> SELECT * FROM AddressBook;
 | Aradhya    | Mishra    | Infocity | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
 +------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
 1 row in set (0.00 sec)
+
+
+-- UC4: Edit contact using name
+mysql> UPDATE AddressBook SET address='Sargasan' WHERE first_name='Aradhya' AND last_name='Mishra';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AddressBook;
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| first_name | last_name | address  | city        | state   | zip    | phone_number   | email                        |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+1 row in set (0.00 sec)
