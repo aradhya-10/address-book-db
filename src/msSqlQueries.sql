@@ -87,3 +87,40 @@ mysql> SELECT * FROM AddressBook;
 | Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
 +------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
 1 row in set (0.00 sec)
+
+
+mysql> SELECT * FROM AddressBook;
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| first_name | last_name | address  | city        | state   | zip    | phone_number   | email                        |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO AddressBook (first_name, last_name, address, city, state, zip
+    -> , phone_number, email) VALUES ('Sanjana', 'Pathak', 'Shahpur', 'Gorakhpur', 'UP', '273014', '+91 6394972288', 'sanjana.pathak@gmail.com');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO AddressBook (first_name, last_name, address, city, state, zip
+    -> , phone_number, email) VALUES ('Garima', 'Mangal', 'Bada', 'Gwalior', 'MP', '474009', '+91 6394772288', 'mangal.garima@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM AddressBook;
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| first_name | last_name | address  | city        | state   | zip    | phone_number   | email                        |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
+| Garima     | Mangal    | Bada     | Gwalior     | MP      | 474009 | +91 6394772288 | mangal.garima@gmail.com      |
+| Sanjana    | Pathak    | Shahpur  | Gorakhpur   | UP      | 273014 | +91 6394972288 | sanjana.pathak@gmail.com     |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+3 rows in set (0.00 sec)
+
+-- UC6: Select contact from city or state
+mysql> SELECT * FROM AddressBook WHERE city='Gwalior' OR state='Gujarat';
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| first_name | last_name | address  | city        | state   | zip    | phone_number   | email                        |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+| Aradhya    | Mishra    | Sargasan | Gandhinagar | Gujarat | 382010 | +91 6394972188 | aradhya.mishra1012@gmail.com |
+| Garima     | Mangal    | Bada     | Gwalior     | MP      | 474009 | +91 6394772288 | mangal.garima@gmail.com      |
++------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+
+2 rows in set (0.00 sec)
