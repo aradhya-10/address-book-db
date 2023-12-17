@@ -234,3 +234,12 @@ mysql> SELECT * FROM AddressBook;
 | Sanjana    | Pathak    | Shahpur  | Gorakhpur   | UP      | 273014 | +91 6394972288 | sanjana.pathak@gmail.com     | AddBook2 | Friends |
 +------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+----------+---------+
 5 rows in set (0.00 sec)
+
+mysql> SELECT type, COUNT(*) AS count_by_type FROM AddressBook GROUP BY type;
++---------+---------------+
+| type    | count_by_type |
++---------+---------------+
+| Family  |             2 |
+| Friends |             3 |
++---------+---------------+
+2 rows in set (0.01 sec)
