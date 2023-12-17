@@ -235,6 +235,8 @@ mysql> SELECT * FROM AddressBook;
 +------------+-----------+----------+-------------+---------+--------+----------------+------------------------------+----------+---------+
 5 rows in set (0.00 sec)
 
+
+-- UC10: Get Count by Type
 mysql> SELECT type, COUNT(*) AS count_by_type FROM AddressBook GROUP BY type;
 +---------+---------------+
 | type    | count_by_type |
@@ -243,3 +245,74 @@ mysql> SELECT type, COUNT(*) AS count_by_type FROM AddressBook GROUP BY type;
 | Friends |             3 |
 +---------+---------------+
 2 rows in set (0.01 sec)
+
+
+-- UC11: Assign multiple types to contact
+-- This could have been done in two ways, one where we would create a different primary key (Say contact ID)
+-- and the contact would be repeated to be stored with two different type fields.
+-- The other by creating a different contact-type table, which I have implemented.
+
+mysql> ALTER TABLE AddressBook DROP COLUMN type;
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE ContactTypes (
+    ->     first_name VARCHAR(50),
+    ->     last_name VARCHAR(50),
+    ->     type VARCHAR(50),
+    ->     FOREIGN KEY (first_name, last_name) REFERENCES AddressBook(first_name, last_name)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO ContactTypes (first_name, last_name, type)
+    -> VALUES ('Aradhya', 'Mishra', 'Friend');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO ContactTypes (first_name, last_name, type)
+    -> VALUES ('Naman', 'Mishra', 'Friend');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO ContactTypes (first_name, last_name, type)
+    -> VALUES ('Garima', 'Mangal', 'Family');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO ContactTypes (first_name, last_name, type)
+    -> VALUES ('Riya', 'Mishra', 'Family');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO ContactTypes (first_name, last_name, type)
+    -> VALUES ('Sanjana', 'Pathak', 'Family');
+Query OK, 1 row affected (0.02 sec)
+
+
+mysql> SELECT * FROM ContactTypes;
++------------+-----------+--------+
+| first_name | last_name | type   |
++------------+-----------+--------+
+| Aradhya    | Mishra    | Friend |
+| Naman      | Mishra    | Friend |
+| Garima     | Mangal    | Family |
+| Riya       | Mishra    | Family |
+| Sanjana    | Pathak    | Family |
++------------+-----------+--------+
+5 rows in set (0.00 sec)
+
+-- Setting Sanjana as both types
+mysql> INSERT INTO ContactTypes (first_name, last_name, type)
+    -> VALUES ('Sanjana', 'Pathak', 'Friend');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM ContactTypes;
++------------+-----------+--------+
+| first_name | last_name | type   |
++------------+-----------+--------+
+| Aradhya    | Mishra    | Friend |
+| Naman      | Mishra    | Friend |
+| Garima     | Mangal    | Family |
+| Riya       | Mishra    | Family |
+| Sanjana    | Pathak    | Family |
+| Sanjana    | Pathak    | Friend |
++------------+-----------+--------+
+6 rows in set (0.00 sec)
+
+
